@@ -1,23 +1,22 @@
-#include "coding.h"
+#include <stdio.h>
+#include "main.h"
 
 /**
- * _memset - function with 3 arguments
- * @s: char type pointer 1st argument
- * @b: char type 2nd argument
- * @n: int type unsigned 3rd argument
- *
- * Description: fills memory with a constant bye
- * Return: a pointer to the memory area
+ * _memset - Entry point
+ * @s: pointed destination
+ * @b: constant byte
+ * @n: bytes
+ * Return: Always 0 (Success)
  */
+
 char *_memset(char *s, char b, unsigned int n)
 {
 	unsigned int i;
 
-	i = 0;
-	while (i < n)
+	for (i = 0; i < n; i++)
 	{
+
 		s[i] = b;
-		i++;
 	}
+
 	return (s);
-}
