@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 /**
  * main - Entry Point
@@ -8,12 +9,21 @@
  */
 int main(int argc, char *argv[])
 {
-	int i = 0;
+	int i, sum = 0;
 
-	while (i < argc)
+	if (argc < 1)
+		return (0);
+
+	for (i = 1; i < argc; i++)
 	{
-		printf("%s\n", argv[i]);
-		i++;
+		if (!atoi(argv[i]))
+		{
+			printf("%s\n", "Error");
+			return (1);
+		}
+		sum += atoi(argv[i]);
 	}
+	printf("%d\n", sum);
+
 	return (0);
 }
