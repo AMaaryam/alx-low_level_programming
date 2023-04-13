@@ -1,48 +1,59 @@
+#include <stdio.h>
+#include "main.h"
 #include <stdlib.h>
-#include "coding.h"
 
 /**
- * *_realloc - function with 3 parameter
- * @ptr: pointer to old memory
- * @old_size: size of old memory
- * @new_size: size of new memory
- *
- * Description: allocate memory for new size
- * Return: pointer to new memory allocated
+ * _strlen - calculate and return length
+ * @string: string
+ * Return: string length
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+
+int _strlen(char *string)
 {
-	char *np;
-	unsigned int i;
+	int i;
 
-	if (new_size == old_size)
-		return (ptr);
+	for (i = 0; string[i] != '\0'; i++)
+		;
+
+	return (i);
+}
+
+/**
+ * string_nconcat - concatenate s1 and n bytes of s2; return ptr to string
+ * @s1: string 1
+ * @s2: string 2
+ * @n: n bytes to concat from string 2
+ * Return: pointer to concatenated string
+ */
+
+char *string_nconcat(char *s1, char *s2, unsigned int n)
+{
+	char *ptr;
+	int num, len, i, j;
+
+	num = n;
+
+	if (s1 == NULL) /* account for NULL strings */
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
+	if (num < 0) /* account for negative n bytes */
+		return (NULL);
+	if (num >= _strlen(s2)) /* account for n too big */
+		num = _strlen(s2);
+
+	len = _strlen(s1) + num + 1; /* +1 to account for null pointer */
+
+	ptr = malloc(sizeof(*ptr) * len); /* malloc and check for error */
+
 	if (ptr == NULL)
-	{
-		np = malloc(new_size);
-		if (np == NULL)
-		{
-			free(np);
-			return (NULL);
-		}
-		return (np);
-	}
-	if (new_size == 0 && ptr != NULL)
-	{
-		free(ptr);
 		return (NULL);
-	}
 
-	np = malloc(new_size);
-	if (np == NULL)
-	{
-		free(np);
-		return (NULL);
-	}
+	for (i = 0; s1[i] != '\0'; i++) /* concat */
+		ptr[i] = s1[i];
+	for (j = 0; j < num; j++)
+		ptr[i + j] = s2[j];
+	ptr[i + j] = '\0';
 
-	for (i = 0; i < old_size; i++)
-		np[i] = *((char *)ptr + i);
-
-	free(ptr);
-	return (np);
+	return (ptr);
 }
