@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include "main.h"
+#include <stdlib.h>
 /**
  *  *malloc_checked - Allocates memory using malloc
  *  *@b: unsigned int argument size of memory
