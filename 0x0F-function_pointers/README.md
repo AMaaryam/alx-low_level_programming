@@ -1,0 +1,1 @@
+readmefile of func pointer
