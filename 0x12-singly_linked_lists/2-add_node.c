@@ -12,23 +12,23 @@
 
 list_t *add_node(list_t **head_ref, const char *string_data)
 {
-	list_t *new_node;
-	size_t string_length;
+	list_t *new_node;i // Declaration of the new node
+	size_t string_length; // Declaration of size_t variable
 
-	new_node = malloc(sizeof(list_t));
+	new_node = malloc(sizeof(list_t));// Allocation of memory
 	if (new_node == NULL)
 	{
-		return (NULL);
+		return (NULL);// Return null if memory allocation fails
 	}
 
-	new_node->str = strdup(string_data);
+	new_node->str = strdup(string_data); // Duplicate the string
 
-	for (string_length = 0; string_data[string_length]; string_length++)
+	for (string_length = 0; string_data[string_length]; string_length++)// Calculate the length of the string
 		;
-
+ // Set the length of the string
 	new_node->len = string_length;
-	new_node->next = *head_ref;
-	*head_ref = new_node;
+	new_node->next = *head_ref; // Set the new node's next as the head
+	*head_ref = new_node;// Update the head
 
-	return (*head_ref);
+	return (*head_ref);// Return the head
 }
