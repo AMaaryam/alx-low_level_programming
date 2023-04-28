@@ -3,37 +3,32 @@
 #include <stdlib.h>
 #include <stdio.h>
 /**
- * *add_node - adds a node to a linked list head
- * @head: linked list head
- * @str: string element of the linked list
- * Return: number of elements
+ * add_node - function that adds a new node at the beginning of a list_t list
+ * Owned By Maaryam
+ * @head_ref: the head
+ * @string_data: string
+ * Return: address
  */
 
-list_t *add_node(list_t **list, const char *str)
+list_t *add_node(list_t **head_ref, const char *string_data)
 {
-	list_t *new_element;
-	int str_len;
+	list_t *new_node;
+	size_t string_length;
 
-	new_element = (list_t *) malloc(sizeof(list_t));
-
-	if (new_element == NULL)
+	new_node = malloc(sizeof(list_t));
+	if (new_node == NULL)
 	{
-		free(new_element);
 		return (NULL);
 	}
 
-	new_element->str = strdup(str);
-	if (new_element->str == NULL)
-	{
-		free(new_element);
-		return (NULL);
-	}
-	for (str_len = 0; str[str_len] != '\0';  str_len++)
-	;
+	new_node->str = strdup(string_data);
 
-	new_element->len = str_len;
-	new_element->nextcontinue = *list;
-	*list = new_element;
+	for (string_length = 0; string_data[string_length]; string_length++)
+		;
 
-	return (new_element);
+	new_node->len = string_length;
+	new_node->next = *head_ref;
+	*head_ref = new_node;
+
+	return (*head_ref);
 }
