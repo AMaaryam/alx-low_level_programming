@@ -1,21 +1,20 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
- * free_list - frees a list.
- * @head: a list that enters to the function.
+ * free_list - function that frees a list_t
+ * Owned By Maarym
+ * @list_head: head of the list
+ * Return: void
  */
-void free_list(list_t *head)
+void free_list(list_t *list_head)
 {
-list_t *temp;
+	list_t *current_node;
 
-	temp = head;
-	while (temp != NULL)
+	while (list_head != NULL)
 	{
-		free(temp->str);
-		free(temp);
-		temp = temp->next;
+		current_node = list_head;
+		list_head = list_head->next;
+		free(current_node->str);
+		free(current_node);
 	}
 }
