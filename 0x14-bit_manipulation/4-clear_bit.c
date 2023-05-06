@@ -12,15 +12,9 @@
     */
     int clear_bit(unsigned long int *numPtr, unsigned int bitIndex)
     {
-    /* check if the bit index is within range*/
-    if (bitIndex > 63)
-    {
-    return (-1);
-    }
-
-    /* clear the bit using bit manipulation*/
-    *numPtr = (~(1UL << bitIndex) & *numPtr);
-
-    /* return success*/
-    return (1);
+    	if (bitIndex > 63)
+   		return (-1);
+    
+	*numPtr = (~(1UL << bitIndex) & *numPtr);
+        return (1);
     }
