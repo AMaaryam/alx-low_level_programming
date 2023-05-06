@@ -9,11 +9,11 @@
 
     Return: on success 1, on failure -1
     */
-    int set_bit(unsigned long int *numPtr, unsigned int bitIndex)
-    { /* check if the bit index is within range*/
-    	if (bitIndex > 63)
-    
-    		return (-1); /*set the bit to 1 using bit manipulation*/
-    	*numPtr = ((1UL << bitIndex) | *numPtr);/* return success*/
-    		return (1);
-    }
+int set_bit(unsigned long int *num_ptr, unsigned int bit_index)
+{
+	if (bit_index > 63)
+		return (-1);
+
+	*num_ptr = ((1UL << bit_index) | *num_ptr);
+	return (1);
+}
