@@ -6,15 +6,14 @@
  * read_textfile- Read the tex whicht prints STDOUT.
  * @filename: text reading
  * @letters: The number of characters to read and print.
- *Return: The actual number of bytes read and printed on success,
-*0 if the function fails or if filename is NULL.
+ *Return: The actual number of bytes read and printed on success,0 if the function fails or if filename is NULL.
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-char buf; / Pointer to allocated buffer. /
-ssize_t fd; / File descriptor. /
-ssize_t w; / Number of characters written to STDOUT. /
-ssize_t t; / Number of characters read from file. */
+char buf; /* Pointer to allocated buffer.*/
+ssize_t fd; /* File descriptor. */
+ssize_t w; /* Number of characters written to STDOUT. */
+ssize_t t; /* Number of characters read from file. */
 
 fd = open(filename, O_RDONLY);  /* Open file in read-only mode. */
 if (fd == -1)
