@@ -1,30 +1,30 @@
+
+
 #include "main.h"
 #include <stdlib.h>
-
 /**
- * read_textfile - Read a text file and print it to STDOUT.
- * @filename: Name of the file to be read.
- * @letters:  number of letters  to read .
- * Return: The actual number of bytes read and printed on success,
- *         and 0 when the function fails or filename is NULL.
+ * read_textfile- Read the tex whicht prints STDOUT.
+ * @filename: text reading
+ * @letters: The number of characters to read and print.
+ *Return: The actual number of bytes read and printed on success,
+*0 if the function fails or if filename is NULL.
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-    char *buffer;
-    ssize_t file_descriptor;
-    ssize_t bytes_read;
-    ssize_t bytes_written;
+char buf; / Pointer to allocated buffer. /
+ssize_t fd; / File descriptor. /
+ssize_t w; / Number of characters written to STDOUT. /
+ssize_t t; / Number of characters read from file. */
 
-    file_descriptor = open(filename, O_RDONLY);
-    if (file_descriptor == -1)
-        return (0);
+fd = open(filename, O_RDONLY);  /* Open file in read-only mode. */
+if (fd == -1)
+	return (0);  /* Return 0 if opening the file fails. */
 
-    buffer = malloc(sizeof(char) * letters);
-    bytes_read = read(file_descriptor, buffer, letters);
-    bytes_written = write(STDOUT_FILENO, buffer, bytes_read);
+buf = malloc(sizeof(char) * letters);  /* Allocate memory for buffer. */
+t = read(fd, buf, letters);  /* Read characters from file into buffer. */
+w = write(STDOUT_FILENO, buf, t);  /* Write characters from buffer to STDOUT. */
 
-    free(buffer);
-    close(file_descriptor);
-
-    return (bytes_written);
+free(buf);  /* Free the memory allocated for buffer. */
+close(fd);  /* Close the file. */
+return (w);  /* Return the number of characters written to STDOUT. */
 }
