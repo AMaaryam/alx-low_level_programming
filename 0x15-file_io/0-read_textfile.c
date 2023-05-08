@@ -4,11 +4,11 @@
 /**
  * read_textfile - Read a text file and print it to STDOUT.
  * @filename: Name of the file to be read.
- * @max_bytes: Maximum number of bytes to be read and printed.
+ * @letters:  number of letters  to read .
  * Return: The actual number of bytes read and printed on success,
  *         and 0 when the function fails or filename is NULL.
  */
-ssize_t read_textfile(const char *filename, size_t max_bytes)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
     char *buffer;
     ssize_t file_descriptor;
@@ -19,8 +19,8 @@ ssize_t read_textfile(const char *filename, size_t max_bytes)
     if (file_descriptor == -1)
         return (0);
 
-    buffer = malloc(sizeof(char) * max_bytes);
-    bytes_read = read(file_descriptor, buffer, max_bytes);
+    buffer = malloc(sizeof(char) * letters);
+    bytes_read = read(file_descriptor, buffer, letters);
     bytes_written = write(STDOUT_FILENO, buffer, bytes_read);
 
     free(buffer);
